@@ -1,0 +1,9 @@
+{
+  "name": "nodobot",
+  "version": "0.0.1",
+  "description": "do things, compet, evolve",
+  "main": "index.js",
+  "repository": "git@github.com:arfost/nodobot.git",
+  "author": "arfost <clement.chevalier@cirruseo.com>",
+  "license": "GPL3"
+}
