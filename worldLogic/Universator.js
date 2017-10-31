@@ -4,8 +4,8 @@ const Arenator = require('./Arenator.js')
 module.exports = class {
     constructor(motherNatureParam, arenatorParam){
         this.motherNature = new MotherNaturator(motherNatureParam)
-        this.arenator = new Arenator(arenatorParam)
         this.motherNature.createFirstGeneration();
+        this.arenator = new Arenator(arenatorParam)
         this.datas = new UniversatorDataSavior();
         this.generationNumber = 0;
         console.log("the universe is here")

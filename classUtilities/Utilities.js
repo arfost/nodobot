@@ -28,3 +28,13 @@ module.exports.paramsFromFileOrObject = class ParamsFromFileOrObject extends mod
         this.params = params
     }
 }
+
+module.exports.random = function getRandomIntInclusive(min, max) {
+    if(typeof max === 'undefined'){
+        max = min;
+        min = 1;
+    }
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  }
