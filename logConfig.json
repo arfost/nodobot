@@ -1,0 +1,17 @@
+{
+    "testLogger":{
+      "writers":[
+        "fileLog",
+        "consoleLog"
+      ],
+      "level":[
+          "WARN",
+          "LOG",
+          "ERROR",
+          "INFO"
+      ],
+      "blackListName":[],
+      "logTime":true,
+      "logLvl":true
+    }
+}

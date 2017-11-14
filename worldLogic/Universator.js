@@ -1,3 +1,5 @@
+var console = logger('universator');
+
 const MotherNaturator = require('./MotherNaturator.js')
 const Arenator = require('./Arenator.js')
 
@@ -17,20 +19,30 @@ module.exports = class {
         if(this.competResult){
             throw "mother earth not ready for compet, create a new génération first"
         }else{
-            var generation = this.motherNature.getActualGeneration();
-            this.competResult = this.arenator.compet(generation);
-            return competResult;
+            this.competResult = this.arenator.compet(this.motherNature.actualGeneration);
+            return this.competResult;
         }
     }
 
     createNewGeneration(){
         if(this.competResult){
             var oldGeneration = this.motherNature.createNewGeneration(this.competResult);
-            this.datas.pushGeneration(oldGeneration);
-            this.competResult = null;
+            this.datas.pushGeneration(oldGeneration, score);
+            this.competResult = false;
             this.generationNumber++;
         }else{
             throw "can't create a new generation without competResult first"
+        }
+    }
+
+    getGeneration(genNumber){
+        this.datas.getGeneration(genNumber)
+    }
+
+    get actualGeneration(){
+        return {
+            generation: this.motherNature.actualGeneration,
+            score: this.competResult
         }
     }
 
@@ -46,8 +58,13 @@ class UniversatorDataSavior {
     }
 
     //add a new json representation of a generation
-    pushGeneration(generation){
-        this.datas.push(generation)
+    pushGeneration(generation, score){
+        this.datas.push(
+            {
+                generation: generation,
+                score: score
+            }
+        )
     }
 
 

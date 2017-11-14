@@ -1,3 +1,5 @@
+var console = logger('motherNaturator');
+
 paramsFromFileOrObject = require('../classUtilities/Utilities.js').paramsFromFileOrObject
 const random = require('../classUtilities/Utilities.js').random
 
@@ -10,12 +12,11 @@ module.exports = class extends paramsFromFileOrObject{
     createFirstGeneration(){
         this.bots = [];
         for(let i = 0; i < this.params.generationSize; i++){
-            this.bots.push(this.createNewBot(i, 0))
+            this.bots.push(this._createNewBot(i, 0))
         }
-        console.log(this.bots)
     }
 
-    createNewBot(indice, generationNumber){
+    _createNewBot(indice, generationNumber){
         let bot = {
             name:"botty_" + generationNumber + "_" + (indice+1),
             chromosomes :[]
@@ -33,6 +34,14 @@ module.exports = class extends paramsFromFileOrObject{
         return bot
     }
 
+    createNewGeneration(){
+        console.log(`new Generation creation`)
+    }
+
+    get actualGeneration(){
+        return this.bots
+    }
+
     //list of needed params
     get neededParams() {
         return [
@@ -41,7 +50,9 @@ module.exports = class extends paramsFromFileOrObject{
             "minChromosome",
             "maxChromosome",
             "geneByChromosoneMin",
-            "geneByChromosoneMax"
+            "geneByChromosoneMax",
+            "toKeep",
+            "toReproduce"
         ]
     }
 

@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:arfost/nodobot.git",
   "author": "arfost <clement.chevalier@cirruseo.com>",
-  "license": "GPL3"
+  "license": "GPL3",
+  "dependencies": {
+    "stealthlog": "github:arfost/stealthLog"
+  }
 }
