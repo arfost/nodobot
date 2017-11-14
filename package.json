@@ -7,6 +7,6 @@
   "author": "arfost <clement.chevalier@cirruseo.com>",
   "license": "GPL3",
   "dependencies": {
-    "stealthlog": "github:arfost/stealthLog"
+    "stealthlog": "^0.1.0"
   }
 }

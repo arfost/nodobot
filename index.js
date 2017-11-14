@@ -1,5 +1,5 @@
-logger = require('stealthLog')('logConfigprout.json');
-var console = logger('index', "conf3");
+logger = require('stealthLog')('logConfig.json');
+var console = logger('index');
 const Universator = require('./worldLogic/Universator.js')
 
 let motherNatureParams = {

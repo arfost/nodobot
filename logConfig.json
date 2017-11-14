@@ -1,5 +1,5 @@
 {
-    "testLogger":{
+    "defaultLogger":{
       "writers":[
         "fileLog",
         "consoleLog"
