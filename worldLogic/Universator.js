@@ -19,15 +19,15 @@ module.exports = class {
         if(this.competResult){
             throw "mother earth not ready for compet, create a new génération first"
         }else{
-            this.competResult = this.arenator.compet(this.motherNature.actualGeneration);
-            return this.competResult;
+            this.arenator.compet(this.motherNature.actualGeneration)
+            this.competResult = true;
         }
     }
 
     createNewGeneration(){
         if(this.competResult){
-            var oldGeneration = this.motherNature.createNewGeneration(this.competResult);
-            this.datas.pushGeneration(oldGeneration, score);
+            var oldGeneration = this.motherNature.createNewGeneration();
+            this.datas.pushGeneration(oldGeneration);
             this.competResult = false;
             this.generationNumber++;
         }else{
@@ -40,10 +40,7 @@ module.exports = class {
     }
 
     get actualGeneration(){
-        return {
-            generation: this.motherNature.actualGeneration,
-            score: this.competResult
-        }
+        return this.motherNature.actualGeneration
     }
 
 }
@@ -55,16 +52,23 @@ module.exports = class {
 class UniversatorDataSavior {
     constructor(){
         this.datas = []
+        this.ref = {}
+        this.betterEver;
+        this.worstEver;
     }
 
     //add a new json representation of a generation
-    pushGeneration(generation, score){
-        this.datas.push(
-            {
-                generation: generation,
-                score: score
+    pushGeneration(generation){
+        for(let bot of generation){
+            this.ref[bot.name] ? this.ref[bot.name].push(generation.length) : this.ref[bot.name] = [generation.length]
+            if(!this.betterEver || this.betterEver.score < bot.score){
+                this.betterEver = bot
             }
-        )
+            if(!this.worstEver || this.worstEver.score > bot.score){
+                this.worstEver = bot
+            }
+        }
+        this.datas.push(generation)
     }
 
 
@@ -73,11 +77,26 @@ class UniversatorDataSavior {
         return this.datas[generationNumber];
     }
 
+    getSingleBot(botName){
+        return this.datas.filter((el, index)=>{return this.ref[botName].indexOf(index) !== -1})
+    }
+
     //renvoie toutes les données de générations
     getAllGenerations(){
         return this.datas;
     }
 
+    getWorldStateComplete(){
+        return {
+            betterEver: this.betterEver,
+            worstEver: this.worstEver,
+            generations: this.datas
+        }
+    }
+
+    get lastGeneration(){
+        return this.datas[this.datas.length-1];
+    }
 
     //chercher une donnée spécifique dans l'ensemble des générations
     //format de la query "path/subpath:value"

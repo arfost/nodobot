@@ -7,6 +7,8 @@
   "author": "arfost <clement.chevalier@cirruseo.com>",
   "license": "GPL3",
   "dependencies": {
-    "stealthlog": "^0.1.0"
+    "arfost-ntools": "0.0.3",
+    "firebase": "^4.8.0",
+    "stealthlog": "^0.1.1"
   }
 }

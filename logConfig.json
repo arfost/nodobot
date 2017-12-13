@@ -6,11 +6,15 @@
       ],
       "level":[
           "WARN",
-          "LOG",
           "ERROR",
-          "INFO"
+          "INFO", 
+          "LOG"
       ],
-      "blackListName":[],
+      "blackListName":[
+        "arenator",
+        "repro",
+        "motherNaturator"
+      ],
       "logTime":true,
       "logLvl":true
     }
